@@ -1,4 +1,4 @@
-package org.example
+package com.github.ringoame196
 
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -12,7 +12,7 @@ object Main {
 	@JvmStatic
 	fun main(args: Array<String>) {
 		val defaultPort = 8080
-		val port = args[0].toIntOrNull() ?: defaultPort
+		val port = args.getOrNull(0)?.toIntOrNull() ?: defaultPort
 
 		// サーバーを起動
 		embeddedServer(Netty, port = port) {
@@ -35,6 +35,7 @@ object Main {
 					call.respondText("ファイルサーバーが稼働中です")
 				}
 			}
+			println("${port}番でサーバーを公開しました")
 		}.start(wait = true)
 	}
 }
