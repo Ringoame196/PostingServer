@@ -1,9 +1,10 @@
 plugins {
 	id("java")
 	kotlin("jvm")
+	application
 }
 
-group = "org.example"
+group = "com.github.ringoame196"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -34,4 +35,8 @@ tasks.jar {
 
 kotlin {
 	jvmToolchain(22)
+}
+
+application {
+	mainClass.set("com.github.ringoame196.MainKt")
 }
