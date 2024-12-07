@@ -1,5 +1,6 @@
 package com.github.ringoame196
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.http.content.*
@@ -17,22 +18,41 @@ object Main {
 		// サーバーを起動
 		embeddedServer(Netty, port = port) {
 			routing {
-				// ルートにアクセスされた場合、ファイルを公開
 				static("/") {
-					// JARファイル直下のパスを指定
 					val jarDir = File(System.getProperty("user.dir"))
 					val publicDir = File(jarDir, "public")
 
 					if (!publicDir.exists()) publicDir.mkdirs()
 
-					// 静的ファイルを提供
 					staticRootFolder = publicDir
 					files(".")
 				}
 
-				// 任意のエンドポイントを作成可能
+				// URL指定されたファイルを取得するエンドポイント
+				get("/{filename}") {
+					val jarDir = File(System.getProperty("user.dir"))
+					val publicDir = File(jarDir, "public")
+					val fileName = call.parameters["filename"]
+
+					if (fileName.isNullOrBlank()) {
+						call.respondText("Please specify file name", status = HttpStatusCode.Companion.BadRequest)
+						return@get
+					}
+
+					val file = File(publicDir, fileName)
+
+					if (file.exists() && file.isFile) {
+						call.respondFile(file)
+					} else {
+						call.respondText(
+							"NoFile",
+							status = HttpStatusCode.NotFound
+						)
+					}
+				}
+
 				get("/") {
-					call.respondText("ファイルサーバーが稼働中です")
+					call.respondText("server online")
 				}
 			}
 			println("${port}番でサーバーを公開しました")
