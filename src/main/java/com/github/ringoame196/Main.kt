@@ -45,7 +45,7 @@ object Main {
 						call.respondFile(file)
 					} else {
 						call.respondText(
-							"NoFile",
+							"file does not exist",
 							status = HttpStatusCode.NotFound
 						)
 					}
