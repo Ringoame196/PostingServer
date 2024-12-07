@@ -1,11 +1,15 @@
 package com.github.ringoame196
 
-import io.ktor.http.*
-import io.ktor.server.engine.*
-import io.ktor.server.http.content.*
-import io.ktor.server.netty.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.static
+import io.ktor.server.http.content.staticRootFolder
+import io.ktor.server.http.content.files
+import io.ktor.server.netty.Netty
+import io.ktor.server.response.respondFile
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
 import java.io.File
 
 fun main(args: Array<String>) {
