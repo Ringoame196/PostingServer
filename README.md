@@ -2,7 +2,8 @@
 
 ## 概要
 
-指定フォルダ内のファイルを簡単に公開できる軽量なファイルサーバー
+指定フォルダ内のファイルを簡単に公開できる軽量なファイルサーバー <br>
+[ダウンロード](https://github.com/Ringoame196/PostingServer/releases/latest)
 
 ## 仕様
 
