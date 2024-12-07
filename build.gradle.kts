@@ -15,7 +15,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	implementation(kotlin("stdlib-jdk8"))
 	implementation("io.ktor:ktor-server-core:2.3.3")
-	implementation("io.ktor:ktor-server-netty:2.3.3")
+	implementation("io.ktor:ktor-server-netty:3.0.2")
 }
 
 tasks.test {
